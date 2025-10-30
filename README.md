@@ -47,6 +47,8 @@ python -c "import rocket_relations as rr; print(rr.__all__)"
 
 ## Quickstart
 
+```
+bash
 from rocket_relations import c_star, c_f
 
 cs = c_star(gamma=1.2, R=350.0, T0=3500.0)           # ~1706.6214 m/s
@@ -59,21 +61,28 @@ import rocket_relations as rr
 help(rr)
 help(rr.c_star)
 help(rr.c_f)
+```
 
 ------------------------
 
 ## Test
-# This repo uses pytest.
 
+This repo uses pytest.
+
+```
+bash
 pip install pytest
 pytest -q
+```
 
-# You should see all tests passing
+You should see all tests passing
 
 ------------------------
 
 ## Package Layout
 
+```
+bash
 rocket-relations/           # repo root
 ├── pyproject.toml
 ├── README.md
@@ -83,6 +92,7 @@ rocket-relations/           # repo root
 │       └── ideal.py        # c_star(...) and c_f(...)
 └── tests/
     └── test_ideal.py       # unit tests
+```
 
 
 
