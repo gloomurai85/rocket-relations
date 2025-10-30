@@ -1,6 +1,12 @@
 Tutorial
 ========
 
+.. note::
+
+   **Assumptions**: calorically perfect gas; steady, quasi-1D, isentropic nozzle flow;
+   choked at the throat; neglect viscous/thermal/body forces.
+
+
 This short walkthrough shows how to compute the two relations and interpret inputs.
 
 Setup

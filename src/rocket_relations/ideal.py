@@ -36,7 +36,7 @@ def _require_numeric(name, x):
 
 
 def c_star(gamma: float, R: float, T0: float) -> float:
-    """
+    r"""
     Characteristic velocity c* for an ideal rocket.
 
     Parameters
@@ -92,49 +92,36 @@ def c_star(gamma: float, R: float, T0: float) -> float:
 
 
 def c_f(gamma: float, pr_e: float, pr_a: float, eps: float) -> float:
+    r"""
+    Thrust coefficient **CF** for an ideal rocket nozzle (ratios form).
+    
+    :param float gamma: Ratio of specific heats (> 1).
+    :param float pr_e: Exit-to-chamber pressure ratio ``p_e/p_0`` in ``[0, 1)``.
+    :param float pr_a: Ambient-to-chamber pressure ratio ``p_a/p_0`` in ``[0, 1)``.
+    :param float eps: Area ratio ``A_e/A^*`` (``>= 1``).
+    :returns: Thrust coefficient ``CF`` (dimensionless).
+    :rtype: float
+    :raises TypeError: If any input is not numeric.
+    :raises ValueError: If ``gamma <= 1``, or ``pr_e``/``pr_a`` not in ``[0, 1)``, or ``eps < 1``.
+    
+    **Formula (ratios form)**
+    
+    .. math::
+    
+       CF = \sqrt{\frac{2\gamma^2}{\gamma-1}
+                  \left(\frac{2}{\gamma+1}\right)^{\frac{\gamma+1}{\gamma-1}}
+                  \left(1 - (pr_e)^{\frac{\gamma-1}{\gamma}}\right)}
+            + (pr_e - pr_a)\,\epsilon
+    
+    **Example**
+    
+    .. code-block:: python
+    
+       >>> from rocket_relations import c_f
+       >>> round(c_f(1.2, pr_e=0.0125, pr_a=0.02, eps=10.0), 7)
+       1.5423079
     """
-    Thrust coefficient CF for an ideal rocket nozzle (ratios form).
 
-    Parameters
-    ----------
-    gamma : float
-        Ratio of specific heats (> 1). Dimensionless.
-    pr_e : float
-        Exit-to-chamber pressure ratio `pe/p0` in [0, 1). Dimensionless.
-    pr_a : float
-        Ambient-to-chamber pressure ratio `pa/p0` in [0, 1). Dimensionless.
-    eps : float
-        Area ratio `Ae/A*` (>= 1). Dimensionless.
-
-    Returns
-    -------
-    float
-        Thrust coefficient CF (dimensionless).
-
-    Raises
-    ------
-    TypeError
-        If any input is not numeric.
-    ValueError
-        If domain constraints are violated:
-        - `gamma <= 1`
-        - `pr_e` or `pr_a` not in [0, 1)
-        - `eps < 1`
-
-    Notes
-    -----
-    Implements Eq. (2) from the HW handout:
-
-        CF = sqrt( 2*gamma^2/(gamma-1) * (2/(gamma+1))^((gamma+1)/(gamma-1))
-                   * (1 - (pr_e)^((gamma-1)/gamma)) )
-             + (pr_e - pr_a) * eps
-
-    Examples
-    --------
-    >>> from rocket_relations import c_f
-    >>> round(c_f(1.2, pr_e=0.0125, pr_a=0.02, eps=10.0), 7)
-    1.5423079
-    """
     # ---- type checks ----
     _require_numeric("gamma", gamma)
     _require_numeric("pr_e", pr_e)

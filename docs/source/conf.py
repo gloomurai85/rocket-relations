@@ -1,18 +1,11 @@
-# Configuration file for the Sphinx documentation builder.
-#
-# For the full list of built-in configuration values, see the documentation:
-# https://www.sphinx-doc.org/en/master/usage/configuration.html
-
-# -- Project information -----------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
+# Configuration for Sphinx
+import os, sys
+sys.path.insert(0, os.path.abspath('../..'))
+sys.path.insert(0, os.path.abspath('../../src'))
 
 project = 'rocket_relations'
-copyright = '2025, Giovanni Suarez'
 author = 'Giovanni Suarez'
 release = '0.1.0'
-
-# -- General configuration ---------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
     'sphinx.ext.autodoc',
@@ -20,37 +13,24 @@ extensions = [
     'sphinx.ext.autosectionlabel',
     'sphinx.ext.napoleon',
     'sphinx.ext.mathjax',
+    'sphinx.ext.viewcode',      # adds [source] links
+    'sphinx.ext.intersphinx',   # links to external docs (Python stdlib)
 ]
+
+autosummary_generate = True
+
+# Napoleon tweaks for cleaner Returns/Types sections
+napoleon_google_docstring = True
+napoleon_numpy_docstring  = True
+napoleon_use_rtype        = True
+
+# Let :class:`float` etc. link to python docs
+intersphinx_mapping = {
+    'python': ('https://docs.python.org/3', None),
+}
 
 templates_path = ['_templates']
 exclude_patterns = []
 
-
-
-# -- Options for HTML output -------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
-
-html_theme = 'alabaster'
+html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
-
-autosummary_generate = True
-
-html_theme_options = {
-    "collapse_navigation": False,
-    "navigation_depth": 2,
-    "style_external_links": True,
-    "display_version": True,
-}
-
-autodoc_default_options = {
-    "members": True,
-    "undoc-members": True,
-    "show-inheritance": True,
-    "inherited-members": False,
-}
-
-autodoc_typehints = 'description'
-
-napoleon_numpy_docstring = True
-napoleon_google_docstring = False
-napoleon_include_private_with_doc = False
