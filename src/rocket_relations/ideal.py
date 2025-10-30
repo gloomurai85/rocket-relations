@@ -17,12 +17,10 @@ c_f(gamma, pr_e, pr_a, eps)
 
 Notes
 -----
-Equations (ratios form, as in the HW handout):
+Formulas used (ratios form)::
 
-- c*:
     c* = sqrt( (1/gamma) * ((gamma + 1)/2)^((gamma + 1)/(gamma - 1)) * R * T0 )
 
-- CF:
     CF = sqrt( 2*gamma^2/(gamma-1) * (2/(gamma+1))^((gamma+1)/(gamma-1))
                * (1 - (pr_e)^((gamma-1)/gamma)) ) + (pr_e - pr_a) * eps
 """
