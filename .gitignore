@@ -229,3 +229,5 @@ src/.DS_Store
 
 # Built Visual Studio Code Extensions
 *.vsix
+docs/build/
+docs/source/_autosummary/
